@@ -81,7 +81,7 @@ suite, is listed in [`AGENTS.md`](AGENTS.md).
 
 **Gonzalo Sanchez Alvarez <gonzalo.sanchez@alum.udit.es>**: TEAM 1
 
-**Gabriel Calvo Ballesteros <gabriel.calvo@alumnos.udit.es>** TEAM 1
+**Gabriel Calvo Ballesteros <gabriel.calvo@alumnos.udit.es>**: TEAM 1
 
 **Rodrigo García Sánchez <rodrigo.garcia.sanchez@alumnos.udit.es>**: Developer, Oracle Terminal
 
