@@ -5,14 +5,28 @@ import { describe, expect, it, vi } from 'vitest';
 import type { WisdomEntry } from '../types/domain';
 
 const { fetchWisdom } = vi.hoisted(() => ({ fetchWisdom: vi.fn() }));
-vi.mock('../content/wisdom', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../content/wisdom')>()),
-  fetchWisdom,
-}));
+vi.mock('../content/wisdom', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('../content/wisdom')>();
+  // loadWisdom from importOriginal closes over the real fetchWisdom; re-wrap so the
+  // hoisted mock is what the routes exercise.
+  return {
+    ...mod,
+    fetchWisdom,
+    loadWisdom: async (locale: 'en' | 'es') => {
+      try {
+        return { entries: await fetchWisdom(locale), failed: false };
+      } catch {
+        return { entries: [], failed: true };
+      }
+    },
+  };
+});
 
 import IndexRoute from '../pages/[locale]/wisdom/index.astro';
 import SlugRoute from '../pages/[locale]/wisdom/[slug].astro';
 import SectionRoute from '../pages/[locale]/wisdom/sections/[section].astro';
+import LevelRoute from '../pages/[locale]/wisdom/levels/[level].astro';
+import TagRoute from '../pages/[locale]/wisdom/tags/[tag].astro';
 
 const entry: WisdomEntry = {
   id: 'arch-001', section: 'architecture', level: 'advanced', tags: ['boundaries'],
@@ -40,10 +54,17 @@ describe('provenance is visible with a real WisdomEntry fixture, in every view',
     expect(card?.querySelector('dl[aria-label="Provenance"]')).not.toBeNull();
   });
 
-  it('facet listing shows the same provenance', async () => {
+  it.each([
+    ['section', SectionRoute, '/en/wisdom/sections/architecture/', { locale: 'en', section: 'architecture' }],
+    ['level', LevelRoute, '/en/wisdom/levels/advanced/', { locale: 'en', level: 'advanced' }],
+    ['tag', TagRoute, '/en/wisdom/tags/boundaries/', { locale: 'en', tag: 'boundaries' }],
+  ] as const)('%s facet listing shows the same provenance', async (_facet, Route, path, params) => {
     fetchWisdom.mockResolvedValue([entry]);
-    const main = await render(SectionRoute, '/en/wisdom/sections/architecture/', { locale: 'en', section: 'architecture' });
-    expect(main.querySelector('article.ttod-card dl')?.textContent).toContain('ruvebal@crea-comm.net');
+    const main = await render(Route, path, params);
+    const dl = main.querySelector('article.ttod-card dl[aria-label="Provenance"]');
+    expect(dl?.textContent).toContain('ruvebal@crea-comm.net');
+    expect(dl?.textContent).toContain('CC-BY-NC-SA-4.0');
+    expect(dl?.textContent).toContain('Human');
   });
 
   it('detail page shows provenance in a labeled block', async () => {
