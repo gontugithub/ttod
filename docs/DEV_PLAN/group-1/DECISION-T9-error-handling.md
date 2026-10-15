@@ -2,16 +2,19 @@
 
 > Ficha: `docs/public/teaching/tasks/content-task9/` · módulo Content, i18n & Proposals UI (Equipo 1)
 > Candidato elegido de los dos "naturales" que cita `PLAN-EQUIPO1.md`: política de fallback (T3/T4).
+> Todas las rutas y líneas citadas se refieren a la punta de este PR, que ya incluye `main` con
+> PR [#63](https://github.com/ruvebal/ttod/pull/63) (Tarea 3) fusionado el 2026-10-11: se pueden
+> abrir en este mismo commit.
 
 ## Contexto
 
 Antes de la Tarea 3, las cinco rutas de contenido (`index`, `[slug]`, y las tres rutas de faceta)
 llamaban a `fetchWisdom(locale)` directamente, sin ningún `try/catch`. `fetchWisdom()` lanza una
 excepción cuando el backend no responde con éxito o devuelve algo que no es un array
-(`services/frontend/src/content/wisdom.ts:10-12`, rama `content-task3-empty-error-states`). Sin
-nada que la capturara, un fallo real del backend (red caída, 5xx, JSON malformado) llegaba sin
-filtrar hasta el visitante como un stack trace de servidor — exactamente lo que la Tarea 3 pedía
-que dejara de pasar, en los cinco sitios y en los dos idiomas.
+(`services/frontend/src/content/wisdom.ts:10-12`). Sin nada que la capturara, un fallo real del
+backend (red caída, 5xx, JSON malformado) llegaba sin filtrar hasta el visitante como un stack
+trace de servidor — exactamente lo que la Tarea 3 pedía que dejara de pasar, en los cinco sitios y
+en los dos idiomas.
 
 La decisión no es solo "poner un `try/catch`": es **dónde** vive ese `try/catch`.
 
@@ -29,8 +32,8 @@ La decisión no es solo "poner un `try/catch`": es **dónde** vive ese `try/catc
 ## Decisión
 
 Se eligió la **opción 3**. Implementación completa en
-`services/frontend/src/content/wisdom.ts:16-27` (rama `content-task3-empty-error-states`, PR
-[#63](https://github.com/ruvebal/ttod/pull/63)):
+`services/frontend/src/content/wisdom.ts:16-28` (introducida en la Tarea 3, PR
+[#63](https://github.com/ruvebal/ttod/pull/63)); sin el comentario de las líneas 18-21:
 
 ```ts
 export type WisdomLoad = { entries: WisdomEntry[]; failed: boolean };
@@ -95,14 +98,15 @@ dos problemas reales para este módulo:
    habría forma de probarlo con el mismo mecanismo que ya probamos todo lo demás; tendríamos que
    añadir una capa de test distinta (p. ej. Playwright) solo para este caso.
 
-## Evidencia en código (rama `content-task3-empty-error-states`, PR #63)
+## Evidencia en código (punta de este PR)
 
 | Archivo | Qué mostrar |
 |---|---|
-| `services/frontend/src/content/wisdom.ts:16-27` | Definición de `loadWisdom()` — el único `try/catch` |
-| `services/frontend/src/pages/[locale]/wisdom/index.astro` | Consumo de `loadWisdom()`, rama `failed` vs `entries.length === 0` |
+| `services/frontend/src/content/wisdom.ts:16-28` | Definición de `loadWisdom()` — el único `try/catch` |
+| `services/frontend/src/pages/[locale]/wisdom/index.astro` | `await loadWisdom(locale)` y la rama `failed ? … : entries.length === 0 ? …` |
 | `services/frontend/src/pages/[locale]/wisdom/[slug].astro` | Mismo patrón + distinción `notFound` vs `empty` |
-| `services/frontend/src/components/EmptyState.astro` | Prop `variant`, `role="alert"` solo en error |
+| `sections/[section].astro` · `levels/[level].astro` · `tags/[tag].astro` | Las tres facetas, mismo patrón |
+| `services/frontend/src/components/EmptyState.astro:6,10` | Prop `variant`, `role="alert"` solo en error |
 | `services/frontend/src/tests/empty-error-states.test.ts` | Mock de `global.fetch` fallando; confirma `role="alert"` y ausencia de texto de excepción |
 
 **Verificación fuera de los mocks:** se detuvo el contenedor real del backend (`docker compose stop
