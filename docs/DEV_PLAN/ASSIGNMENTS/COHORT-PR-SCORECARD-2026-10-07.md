@@ -1,167 +1,127 @@
-# Cohort PR scorecard — 2026-10-07
+# Cohort PR scorecard — updated 2026-10-15 (pre-defense)
 
 **Audience:** instructor only (not published under `docs/public/`).
-**Rubric source:** [`PHASE-V-FEII-COHORT-COLLABORATION-AND-ASSESSMENT.md`](../PHASE-V-FEII-COHORT-COLLABORATION-AND-ASSESSMENT.md) §5 (PR) · §6 (oral defense, separate).
-**Evidence layer on GitHub:** each PR has (1) `🤖 Automated review` via `make review-pr POST=1` and (2) `Instructor triage — review of the automated review`.
+**Rubric:** §5 — C25 · A25 · T20 · X10 · CI10 · P10 = 100.
+**Evidence pack:** [`pr-status-2026-10-11/`](./pr-status-2026-10-11/INDEX.md) (archive; live gates below).
+**Mail draft:** [`MAIL-PENDIENTES-DEFENSA-2026-10-15.es.md`](./MAIL-PENDIENTES-DEFENSA-2026-10-15.es.md).
 
-**How to use:** fill the six score columns (integers). Leave blank until you have verified that dimension. A missing AI Review Log makes the PR **incomplete** — do not award the full 10 process points until the table is present and honest.
-
----
-
-## §5 rubric (100 pts / PR)
-
-| Code | Dimension | Pts |
-| --- | --- | ---: |
-| C | Contract adherence | 25 |
-| A | Correctness & acceptance criteria | 25 |
-| T | Test coverage | 20 |
-| X | Accessibility | 10 |
-| CI | CI green | 10 |
-| P | AI disclosure & process evidence | 10 |
-
-**Score cells below:** `—` = not yet scored by human. Process notes are prefilled from the 2026-10-07 triage pass.
+**Snapshot:** 3 student PRs open (Content #65 → #67 → #68). Maintainer #9 merged.  
+**Complete seams (product):** PWA · Accounts · **Oracle** · Graph Tasks 1–8.  
+**Instructor waiver (2026-10-15, class):** **not required** — (a) formal review of another team's PR, and (b) PR / commits into another team's module. See waiver rows. Already-delivered cross-module tips (e.g. Graph #78) keep their scores.  
+**Still owed (student):** Content #65/#67/#68 amends · Graph Task 10 (design-decision doc, if no memo). Design-decision Task 10 for E3/E4/E5 if not evidenced.
 
 ---
 
-## Group → seam map
+## Group → seam map (current)
 
-| Group | Seam (module) | Authors on open PRs | Stack shape |
+| Group | Seam | Authors | Open stack |
 | --- | --- | --- | --- |
-| Equipo 1 | Content / i18n / proposals UI (R3b) | `gontugithub` | Plan landed (#28) + Bugbot amend **#43 MERGED**; feature tasks not yet |
-| Equipo 2 | Knowledge graph (R4) | `gpfc-git` | Single task PR (#48) |
-| Equipo 3 | Oracle terminal (R5) | `Andreavilaro0` | Cumulative #44→#45→#38→#39→#40→#41→#42 |
-| Equipo 4 | PWA / local ops (R6) | `PRNovoa` | #51 replaces #37; then #46→#47→#49→#50 (still carry `.aws` on later tips) |
-| Equipo 5 | Auth / favorites / public API | `alexxblaro16` | Cumulative #31→#32→#33→#34→#35 |
+| E1 | Content | `gontugithub` | #61✓→#62✓→#63✓→#64✓→**#65**→**#67**→**#68** · Tasks 7–8 **WAIVED** (#43 merged) |
+| E2 | Graph | `gpfc-git` | #48✓→…→#78✓ · Task 8 done (also waiver class) · Task 9 **WAIVED** · Task 10 pending |
+| E3 | Oracle | `Andreavilaro0` / fork `nbfrodri/ttod_team3` | **complete** product (#42) · Tasks 8–9 **WAIVED** |
+| E4 | PWA | `PRNovoa` | **complete** (+ #74) · Tasks 8–9 **WAIVED** |
+| E5 | Accounts | `alexxblaro16` / `Gonsiii11` on #58 | **complete** · Tasks 8–9 **WAIVED** |
+
+✓ = already **MERGED**.
 
 ---
 
 ## Per-PR matrix
 
-Legend for **Triage** column: process flags from instructor meta-review (not a grade).
-
-| Group | PR | Task / branch | C/25 | A/25 | T/20 | X/10 | CI/10 | P/10 | Σ/100 | Triage (2026-10-07) | Bot + meta |
+| Group | PR | Task / branch | C/25 | A/25 | T/20 | X/10 | CI/10 | P/10 | Σ/100 | Triage / notes | Live CI · merge · decision |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |
-| E5 | [#31](https://github.com/ruvebal/ttod/pull/31) | accounts-task1 · `task/1-ssr-auth` | — | — | — | — | — | — | — | AI log missing; CHANGES_REQUESTED; CI green | [bot](https://github.com/ruvebal/ttod/pull/31) · meta posted |
-| E5 | [#32](https://github.com/ruvebal/ttod/pull/32) | accounts-task2 · `task/2-personal-library` | — | — | — | — | — | — | — | AI log missing; mergeable UNKNOWN; CHANGES_REQUESTED | bot · meta |
-| E5 | [#33](https://github.com/ruvebal/ttod/pull/33) | accounts-task3 · `task/3-proposal-endpoint` | — | — | — | — | — | — | — | AI log missing; verify 201+proposal id; bot TS→Python false positive | bot · meta |
-| E5 | [#34](https://github.com/ruvebal/ttod/pull/34) | accounts-task4 · `task/4-review-pipeline` | — | — | — | — | — | — | — | AI log missing; verify `requireRole(reviewer)`; ignore favorites “scope creep” | bot · meta |
-| E5 | [#35](https://github.com/ruvebal/ttod/pull/35) | accounts-task5 · `task/5-public-pat` | — | — | — | — | — | — | — | AI log missing; cookie-must-401 on `/wisdom/random` | bot · meta |
-| E4 | [#37](https://github.com/ruvebal/ttod/pull/37) **CLOSED** | pwa-task1 · bad `main` head | — | — | — | — | — | — | — | Superseded by #51 | — |
-| E4 | [#51](https://github.com/ruvebal/ttod/pull/51) | pwa-task1 · `pwa-task1-service-worker` | 24 | 24 | 20 | 10 | 10 | 9 | **97** | Replaces #37; tip at `v2` OK with E2E v1→v2; AI log filled; bot false positives dismissed | bot · triage 2026-10-08 |
-| E4 | [#46](https://github.com/ruvebal/ttod/pull/46) | pwa-task2 · `pwa-task2-offline-oracle` | — | — | — | — | — | — | — | Verify oracle shell cached offline; drop `.aws`; AI log | bot · meta |
-| E4 | [#47](https://github.com/ruvebal/ttod/pull/47) | pwa-task3 · `pwa-task3-cache-policies` | — | — | — | — | — | — | — | Verify cache-first static / network-first API; drop `.aws`; AI log | bot · meta |
-| E4 | [#49](https://github.com/ruvebal/ttod/pull/49) | pwa-task4 · `pwa-task4-offline-queue` | — | — | — | — | — | — | — | Bot wrongly said db/sw missing — verify flush-on-online; OracleTerminal conflict; AI log | bot · meta |
-| E4 | [#50](https://github.com/ruvebal/ttod/pull/50) | pwa-task5 · `pwa-task5-install-quality` | — | — | — | — | — | — | — | Canonical manifest name; install evidence; AI log | bot · meta |
-| E3 | [#44](https://github.com/ruvebal/ttod/pull/44) | oracle-task1 · streamed rendering | — | — | — | — | — | — | — | CI not reported; strengthen chunk assertions; AI log | bot · meta |
-| E3 | [#45](https://github.com/ruvebal/ttod/pull/45) | oracle-task2 · live region | — | — | — | — | — | — | — | CI not reported; describe-name NIT only | bot · meta |
-| E3 | [#38](https://github.com/ruvebal/ttod/pull/38) | oracle-task3 · grounded/creative | — | — | — | — | — | — | — | CI not reported; dismiss prior-task test removal | bot · meta |
-| E3 | [#39](https://github.com/ruvebal/ttod/pull/39) | oracle-task4 · session history | — | — | — | — | — | — | — | CI not reported; verify `sessionHistory` wire format | bot · meta |
-| E3 | [#40](https://github.com/ruvebal/ttod/pull/40) | oracle-task5 · preparing state | — | — | — | — | — | — | — | CI not reported; preparing-vs-immediate-error | bot · meta |
-| E3 | [#41](https://github.com/ruvebal/ttod/pull/41) | oracle-task6 · recovery/error | — | — | — | — | — | — | — | CI not reported; assert user-facing unavailable copy | bot · meta |
-| E3 | [#42](https://github.com/ruvebal/ttod/pull/42) | oracle-task7 · unit/component in CI | — | — | — | — | — | — | — | CI not reported; suite retention is in-brief for Task 7 | bot · meta |
-| E2 | [#48](https://github.com/ruvebal/ttod/pull/48) **APPROVED** | graph-task1 · `graph-task1-fetch-from-api` | 25 | 24 | 20 | 10 | 10 | 9 | **98** | `activeTag` removal in-brief; aside+E2E solid; behind main before merge | bot · triage · **APPROVE** |
-| E1 | [#43](https://github.com/ruvebal/ttod/pull/43) **MERGED** 2026-10-08 | docs · `PLAN-EQUIPO1` Bugbot fixes (`docs/group-1-plan-amendments`) | 22 | 24 | 20 | 10 | 10 | 3 | **89** | Docs-only amend of #28 findings; empty AI log / template checkboxes; bot domain mismatch dismissed | bot · triage · anti-slop |
+| E1 | [#43](https://github.com/ruvebal/ttod/pull/43) **MERGED** 2026-10-08 | docs-plan-bugbot · `docs/group-1-plan-amendments` | 22 | 24 | 20 | 10 | 10 | 3 | **89** | MERGED; empty AI log; docs amend | — |
+| E1 | [#61](https://github.com/ruvebal/ttod/pull/61) **MERGED** 2026-10-12 | content-task1 · `content-task1-facet-routes` | 24 | 24 | 20 | 10 | 10 | 8 | **96** | MERGED; sibling facets; empty-tag 404 | — |
+| E1 | [#62](https://github.com/ruvebal/ttod/pull/62) **MERGED** 2026-10-12 | content-task2 · `content-task2-breadcrumbs` | 24 | 25 | 20 | 10 | 10 | 9 | **98** | MERGED; Breadcrumbs + copy.notFound | — |
+| E1 | [#63](https://github.com/ruvebal/ttod/pull/63) **MERGED** 2026-10-11 | content-task3 · `content-task3-empty-error-states` | 25 | 25 | 20 | 9 | 10 | 9 | **98** | MERGED; EmptyState+loadWisdom+tests | — |
+| E1 | [#64](https://github.com/ruvebal/ttod/pull/64) **MERGED** 2026-10-11 | content-task4 · `content-task4-propose-form` | 25 | 25 | 20 | 10 | 10 | 9 | **99** | MERGED; propose form a11y+gate | — |
+| E1 | [#65](https://github.com/ruvebal/ttod/pull/65) **CHANGES_REQUESTED** | content-task5 · `content-task5-provenance` | — | — | — | — | — | — | — | AMEND: provenance on all surfaces | `CHANGES_REQUESTED` |
+| E1 | [#67](https://github.com/ruvebal/ttod/pull/67) **CHANGES_REQUESTED** | content-task6 · `content-task6-content-tests` | — | — | — | — | — | — | — | AMEND: propose-form component test | `CHANGES_REQUESTED` |
+| E1 | [#68](https://github.com/ruvebal/ttod/pull/68) **CHANGES_REQUESTED** | content-task9 · `content-task9-design-decision` | — | — | — | — | — | — | — | AMEND: design-decision tip alignment | `CHANGES_REQUESTED` |
+| E1 | — **WAIVED** 2026-10-15 | content-task8 · formal review of another team's PR | — | — | — | — | — | — | — | Instructor: not required (class waiver) | — |
+| E1 | — **WAIVED** 2026-10-15 | content-task7 · PR into a module you don't own | — | — | — | — | — | — | — | Instructor: not required (class waiver — no cross-team commits) | — |
+| E2 | [#48](https://github.com/ruvebal/ttod/pull/48) **MERGED** 2026-10-08 | graph-task1 · `graph-task1-fetch-from-api` | 25 | 24 | 20 | 10 | 10 | 9 | **98** | MERGED | — |
+| E2 | [#52](https://github.com/ruvebal/ttod/pull/52) **MERGED** 2026-10-14 | graph-task2 · `graph-task2-accessible-node-selection` | 24 | 24 | 18 | 10 | 10 | 9 | **95** | MERGED; spatial arrow focus nav | — |
+| E2 | [#55](https://github.com/ruvebal/ttod/pull/55) **MERGED** 2026-10-14 | graph-task3 · `graph-task3-task-filter-interaction` | 24 | 25 | 18 | 9 | 10 | 9 | **95** | MERGED; preserve selection across filter | — |
+| E2 | [#71](https://github.com/ruvebal/ttod/pull/71) **MERGED** 2026-10-14 | graph-task4 · `graph-task4-url-state-selection` | 25 | 24 | 20 | 9 | 10 | 9 | **97** | MERGED; `urlState.ts` + deep-link e2e | — |
+| E2 | [#75](https://github.com/ruvebal/ttod/pull/75) **MERGED** 2026-10-14 | graph-task5 · `graph-task5-layout-and-performance` | 24 | 22 | 18 | 10 | 10 | 9 | **93** | MERGED; O(n) section grouping + scale e2e (no DevTools shots) | — |
+| E2 | [#76](https://github.com/ruvebal/ttod/pull/76) **MERGED** 2026-10-14 | graph-task6 · `graph-task6-keyboard-operabililty` | 24 | 24 | 18 | 10 | 10 | 9 | **95** | MERGED; `focusable` + focus-visible + keyboard e2e | — |
+| E2 | [#77](https://github.com/ruvebal/ttod/pull/77) **MERGED** 2026-10-15 | graph-task7 · `graph-task7-graph-island-tests` | 24 | 24 | 20 | 10 | 10 | 9 | **97** | MERGED; GraphIsland component test (+ early index tag pills) | — |
+| E2 | [#78](https://github.com/ruvebal/ttod/pull/78) **MERGED** 2026-10-15 | graph-task8 · `graph-task8-pr-into-different-module` | 24 | 24 | 18 | 9 | 10 | 9 | **94** | MERGED; related-wisdom links on detail (cross-module) | — |
+| E2 | — **WAIVED** 2026-10-15 | graph-task9 · formal review of another team's PR | — | — | — | — | — | — | — | Instructor: not required (class waiver) | — |
+| E2 | — **PENDING** | graph-task10 · design-decision doc for defense | — | — | — | — | — | — | — | No tip PR / memo found | — |
+| E3 | [#44](https://github.com/ruvebal/ttod/pull/44) **CLOSED** 2026-10-13 | oracle-task1 · `oracle-task1-streamed-response-rendering` | 24 | 24 | 18 | 9 | 10 | 8 | **93** | CLOSED superseded by #42 (Task 1 on main via cumulative) | — |
+| E3 | [#45](https://github.com/ruvebal/ttod/pull/45) **CLOSED** 2026-10-13 | oracle-task2 · `oracle-task2-live-region-announcement` | 24 | 24 | 18 | 10 | 10 | 8 | **94** | CLOSED superseded by #42 | — |
+| E3 | [#38](https://github.com/ruvebal/ttod/pull/38) **CLOSED** 2026-10-13 | oracle-task3 · `oracle-task3-grounded-creative-disclosure` | 24 | 24 | 18 | 10 | 10 | 8 | **94** | CLOSED superseded by #42 | — |
+| E3 | [#39](https://github.com/ruvebal/ttod/pull/39) **CLOSED** 2026-10-13 | oracle-task4 · `oracle-task4-session-history` | 24 | 24 | 18 | 9 | 10 | 8 | **93** | CLOSED superseded by #42 | — |
+| E3 | [#40](https://github.com/ruvebal/ttod/pull/40) **CLOSED** 2026-10-13 | oracle-task5 · `oracle-task5-preparing-state` | 24 | 24 | 18 | 9 | 10 | 8 | **93** | CLOSED superseded by #42 | — |
+| E3 | [#41](https://github.com/ruvebal/ttod/pull/41) **CLOSED** 2026-10-13 | oracle-task6 · `oracle-task6-recovery-error-state` | 24 | 24 | 18 | 9 | 10 | 8 | **93** | CLOSED superseded by #42 | — |
+| E3 | [#42](https://github.com/ruvebal/ttod/pull/42) **MERGED** 2026-10-11 | oracle-task7 · `oracle-task7-unit-component-tests` | 25 | 25 | 20 | 10 | 10 | 10 | **100** | MERGED; **cumulative Tasks 1–7** (stack explicitly on 1–6) | — |
+| E3 | — **WAIVED** 2026-10-15 | oracle-task9 · formal review of another team's PR | — | — | — | — | — | — | — | Instructor: not required (class waiver) | — |
+| E3 | — **WAIVED** 2026-10-15 | oracle-task8 · PR into a module you don't own | — | — | — | — | — | — | — | Instructor: not required (class waiver — no cross-team commits) | — |
+| E4 | [#37](https://github.com/ruvebal/ttod/pull/37) **CLOSED** | pwa-task1-bad · `main` | — | — | — | — | — | — | — | CLOSED; superseded by #51 | — |
+| E4 | [#51](https://github.com/ruvebal/ttod/pull/51) **MERGED** 2026-10-08 | pwa-task1 · `pwa-task1-service-worker` | 24 | 24 | 20 | 10 | 10 | 9 | **97** | MERGED | — |
+| E4 | [#46](https://github.com/ruvebal/ttod/pull/46) **MERGED** 2026-10-11 | pwa-task2 · `pwa-task2-offline-oracle` | 24 | 24 | 18 | 10 | 10 | 9 | **95** | MERGED | — |
+| E4 | [#47](https://github.com/ruvebal/ttod/pull/47) **MERGED** 2026-10-11 | pwa-task3 · `pwa-task3-cache-policies` | 24 | 24 | 18 | 10 | 10 | 9 | **95** | MERGED | — |
+| E4 | [#49](https://github.com/ruvebal/ttod/pull/49) **MERGED** 2026-10-12 | pwa-task4 · `pwa-task4-offline-queue` | 25 | 25 | 18 | 9 | 10 | 9 | **96** | MERGED; flush-on-online | — |
+| E4 | [#50](https://github.com/ruvebal/ttod/pull/50) **MERGED** 2026-10-12 | pwa-task5 · `pwa-task5-install-quality` | 24 | 24 | 16 | 10 | 10 | 10 | **94** | MERGED; Brave install evidence | — |
+| E4 | [#60](https://github.com/ruvebal/ttod/pull/60) **MERGED** 2026-10-11 | pwa-task6 · `pwa-task6-performance` | 25 | 25 | 18 | 10 | 10 | 10 | **98** | MERGED; LCP budget | — |
+| E4 | [#69](https://github.com/ruvebal/ttod/pull/69) **MERGED** 2026-10-12 | pwa-task7 · `pwa-task7-offline-tests` | 24 | 24 | 20 | 10 | 10 | 9 | **97** | MERGED; db.test + Page.test | — |
+| E4 | [#74](https://github.com/ruvebal/ttod/pull/74) **MERGED** 2026-10-13 | docs(pwa) · `docs/team-4-ai-use` | 25 | 24 | 16 | 10 | 10 | 10 | **95** | MERGED; `docs/uso-ia-team-4.md` AI-use memo (rejected `tsc` drop) | — |
+| E4 | — **WAIVED** 2026-10-15 | pwa-task9 · formal review of another team's PR | — | — | — | — | — | — | — | Instructor: not required (class waiver) | — |
+| E4 | — **WAIVED** 2026-10-15 | pwa-task8 · PR into a module you don't own | — | — | — | — | — | — | — | Instructor: not required (class waiver — no cross-team commits) | — |
+| E5 | [#31](https://github.com/ruvebal/ttod/pull/31)–[#35](https://github.com/ruvebal/ttod/pull/35) **CLOSED** | accounts-task1–5 old | — | — | — | — | — | — | — | CLOSED; replaced by #53/#58/#57/#72/#56 | — |
+| E5 | [#53](https://github.com/ruvebal/ttod/pull/53) **MERGED** 2026-10-13 | accounts-task1 · `accounts-task1-ssr-auth` | 24 | 24 | 16 | 8 | 10 | 9 | **91** | MERGED; empty login reject + `requireUser` | — |
+| E5 | [#58](https://github.com/ruvebal/ttod/pull/58) **MERGED** 2026-10-13 | accounts-task2 · `accounts-task2-personal-library` | 24 | 24 | 16 | 9 | 10 | 9 | **92** | MERGED; FavoriteButton on detail only | — |
+| E5 | [#57](https://github.com/ruvebal/ttod/pull/57) **MERGED** 2026-10-13 | accounts-task3 · `accounts-task3-proposal-endpoint` | 25 | 24 | 16 | 8 | 10 | 9 | **92** | MERGED; server origin/author + ProposalStore | — |
+| E5 | [#72](https://github.com/ruvebal/ttod/pull/72) **MERGED** 2026-10-13 | accounts-task4 · `accounts-task4-review-pipeline` | 24 | 24 | 14 | 8 | 10 | 9 | **89** | MERGED; reviewer role gate | — |
+| E5 | [#56](https://github.com/ruvebal/ttod/pull/56) **MERGED** 2026-10-13 | accounts-task5 · `accounts-task5-public-pat` | 25 | 24 | 18 | 8 | 10 | 9 | **94** | MERGED; Bearer PAT only on /wisdom/random | — |
+| E5 | [#73](https://github.com/ruvebal/ttod/pull/73) **MERGED** 2026-10-11 | accounts-task6 · `accounts-task6-api-guide` | 24 | 24 | 16 | 8 | 10 | 9 | **91** | MERGED; API guide EN/ES + api_client | — |
+| E5 | [#59](https://github.com/ruvebal/ttod/pull/59) **MERGED** 2026-10-11 | accounts-task7 · `accounts-task7-auth-library-api-tests` | 24 | 24 | 20 | 8 | 10 | 9 | **95** | MERGED; feature-organized tests + npm test in CI | — |
+| E5 | — **WAIVED** 2026-10-15 | accounts-task9 · formal review of another team's PR | — | — | — | — | — | — | — | Instructor: not required (class waiver) | — |
+| E5 | — **WAIVED** 2026-10-15 | accounts-task8 · PR into a module you don't own | — | — | — | — | — | — | — | Instructor: not required (class waiver — no cross-team commits) | — |
 
 ---
 
-## Group rollup (fill after per-PR scores)
+## Group rollup (scored PRs only)
 
-Aggregate only **scored** PRs. For cumulative stacks, either (a) score each tip PR as the task delta you verify, or (b) score the latest tip once against the whole seam — pick one policy and stick to it for every group.
-
-| Group | PRs in wave | Mean Σ | Median Σ | Incomplete (no AI log / HOLD) | Notes |
-| --- | --- | ---: | ---: | --- | --- |
-| E1 Content | #43 (scored) | **89** | **89** | AI log empty on merge | Docs amend only; no feature PRs yet |
-| E2 Graph | #48 (scored, approved) | **98** | **98** | — | Merge after updating branch if behind |
-| E3 Oracle | #44 #45 #38 #39 #40 #41 #42 | — | — | — | Merge order fixed; CI evidence thin |
-| E4 PWA | #51 (scored); #46 #47 #49 #50 open | **97** | **97** | later tips still have `.aws` | Merge **#51 → #46 → #47 → #49 → #50** |
-| E5 Accounts | #31–#35 | — | — | — | CHANGES_REQUESTED already on all five |
+| Group | Scored n | Mean Σ | Median Σ | Notes |
+| --- | ---: | ---: | ---: | --- |
+| E1 Content | 5 | 96 | 98 | #61–#64 merged; #65/#67/#68 AMEND; Tasks 7–8 waived |
+| E2 Graph | 8 | 96 | 95 | Tasks 1–8 merged (#78 scored); Task 9 waived; Task 10 pending |
+| E3 Oracle | 7 | 94 | 93 | **seam complete** (#42); Tasks 8–9 waived |
+| E4 PWA | 8 | 96 | 96 | **seam complete** (+ #74); Tasks 8–9 waived |
+| E5 Accounts | 7 | 92 | 92 | **seam complete**; Tasks 8–9 waived |
 
 ---
 
-## Recommended acceptance / merge order (conflicts)
+## Merge order / remaining student work
 
-Do **not** treat this as a grade order — it is merge safety only.
+1. **Content:** #65 → #67 → #68 (amends only)  
+2. **Graph:** Task 10 design-decision doc if no memo yet  
+3. **Oracle / Accounts / PWA:** product done; cross-team review + cross-team commit tips waived; Task 10 memo if not evidenced  
 
-1. **#43** (docs) · **#48** (graph) — independent  
-2. **Oracle:** #44 → #45 → #38 → #39 → #40 → #41 → #42  
-3. **Accounts:** #31 → #32 → #33 → #34 → #35 (resolve #32 mergeability first)  
-4. **PWA:** **#51** → #46 → #47 → #49 → #50 (rebase later tips after #51; also after Oracle before #49/#50)
+Instructor Update branch / conflict resolve is merge hygiene — not a student reject reason.
 
----
+### Waiver note (2026-10-15)
 
-## Companion CSV (import to Sheets)
+Professor told the cohort that tips requiring either (a) a **formal review of another team's PR**, or (b) a **PR / commits into another team's module**, are **not required**.
 
-Same columns; scores blank until filled. Path: [`COHORT-PR-SCORECARD-2026-10-07.csv`](./COHORT-PR-SCORECARD-2026-10-07.csv).
+| Kind | Tips waived |
+| --- | --- |
+| Formal peer-PR review | Content 8 · Graph 9 · Oracle 9 · PWA 9 · Accounts 9 |
+| Cross-team code PR | Content 7 · Graph 8* · Oracle 8 · PWA 8 · Accounts 8 |
 
----
+\*Graph Task 8 already **MERGED** as #78 — score stands; waiver only excuses teams that never filed.
 
-## Bot quality note (qwen2.5-coder:32b on #51)
+### Oracle note (2026-10-13)
 
-Not “the prompt is broken” — the hybrid rubric already says AI log → MUST FIX only if empty, Task 5 owns icons, extras → STRETCH. On #51 the model still:
-
-1. Flagged AI Review Log empty **while the table was filled** (read failure).
-2. Invented an a11y MUST/NIT (`aria-label` on a live region that already has visible text + `role="status"` + `aria-live`) — classic cargo-cult.
-3. Over-literal on “start at v1” despite E2E proving v1→v2 cleanup with tip at `v2`.
-4. Vague MUST FIX on manifest installability when the brief already scopes icons to Task 5.
-
-**Split:** ~60% model (shallow body/diff reading, a11y stereotypes); ~40% prompt hardenables (explicit “do not MUST FIX aria-label when visible text + status live region”; “tip CACHE_NAME may be v2 if tests prove bump”). Keep the triage comment layer — by design the bot is a first pass, not the grade.
+Per-task PRs #44/#45/#38/#39/#40/#41 looked unmergeable (`DIRTY` / `CHANGES_REQUESTED`) only as stale branches. Product work for Tasks 1–6 was already on `main` via #42’s stacked commits. Closed as superseded; scores credit the work that shipped.
 
 ---
 
-## Scored rationale — [#48](https://github.com/ruvebal/ttod/pull/48) (APPROVED 2026-10-08)
+## Companion CSV
 
-**What it is:** Equipo 2 graph-task1. Hardens fetch → `joinTags` → `radialLayout` → SVG selection/`<aside>`. Removes tag filter, URL sync, and GSAP (explicitly out of Task 1 scope). Author `@gpfc-git`. CI `typecheck-and-build` green. Formal **APPROVE**.
+[`COHORT-PR-SCORECARD-2026-10-07.csv`](./COHORT-PR-SCORECARD-2026-10-07.csv) (rewritten same snapshot).
 
-| Dim | Pts | Why |
-| --- | ---: | --- |
-| C | **25**/25 | Uses published `domain.ts` graph/wisdom shapes; no parallel types; no backend edits. |
-| A | **24**/25 | Meets all four success criteria; `activeTag` removal is correct per brief. −1: PR notes local `check`/`build` not run (CI covered it). |
-| T | **20**/20 | Strong Playwright integration: mock APIs, layout coordinates, click/Enter/Space → aside, loading/empty/error. |
-| X | **10**/10 | `role="button"` + labels; aside `aria-live="polite"`; legend text (not color-only). |
-| CI | **10**/10 | Required check SUCCESS. |
-| P | **9**/10 | AI Review Log filled and honest. −1: local verify gap admitted (not empty log). |
-| **Σ** | **98**/100 | |
-
----
-
-## Scored rationale — [#51](https://github.com/ruvebal/ttod/pull/51) (merged — score locked 2026-10-08)
-
-**What it is:** Equipo 4 Task 1 replacement for closed #37. Branch `pwa-task1-service-worker`. Files: `sw.js`, `site.webmanifest`, `Page.astro` registration + `#ttod-network-boundary`, `e2e/pwa-lifecycle.spec.ts`. CI green. AI Review Log filled and honest.
-
-| Dim | Pts | Why |
-| --- | ---: | --- |
-| C | **24**/25 | No parallel `domain.ts` shapes; minimal manifest (`name`/`start_url`/`display`) aligned with Task 1 vs Task 5 split. −1: no other contract surface to exercise. |
-| A | **24**/25 | Lifecycle + Cache-First proof asset + bilingual online/offline banner + E2E v1→v2 cleanup. Tip at `v2` accepted given test proof (not a functional miss). |
-| T | **20**/20 | Trophy-shaped Playwright lifecycle suite (offline CSS, update/cleanup, unrelated caches, Axe). |
-| X | **10**/10 | Visible localized status, `role="status"`, `aria-live="polite"`, Axe in tests. |
-| CI | **10**/10 | `typecheck-and-build` SUCCESS. |
-| P | **9**/10 | Strong AI log + #37 remediation narrative. −1: unit-test checkbox left unchecked (correctly argued E2E instead — process nit only). |
-| **Σ** | **97**/100 | |
-
----
-
-## Scored rationale — [#43](https://github.com/ruvebal/ttod/pull/43) (MERGED 2026-10-08)
-
-**What it is:** docs-only follow-up to instructor Bugbot notes on [#28](https://github.com/ruvebal/ttod/pull/28). Single file: `docs/DEV_PLAN/group-1/PLAN-EQUIPO1.md` (+76/−55). Author `@gontugithub`. CI `typecheck-and-build` green. No formal GitHub review event (merged after comment triage).
-
-| Dim | Pts | Why |
-| --- | ---: | --- |
-| C | **22**/25 | Plan now matches live `main` (routes exist; auth not yet; `labels` ≠ slug dict; `content-task<N>-…` branch names; real `ASSIGNMENT-*` paths). Not a `domain.ts` code PR — scored as fidelity of the planning contract to the repo. −3: PR template checkboxes left unchecked. |
-| A | **24**/25 | Explicitly closes the 3 high + 4 medium findings from the #28 Bugbot comment; commit message and opener cite that thread. −1: template “What this PR does” section left as HTML comments under the good opener. |
-| T | **20**/20 | Docs-only — no new runtime behaviour; Trophy tests N/A. Full mark. |
-| X | **10**/10 | Docs-only — a11y DoD N/A. Full mark. |
-| CI | **10**/10 | Required check SUCCESS. |
-| P | **3**/10 | Strong narrative in opener + commit (process evidence of *what* was fixed). **AI Review Log table empty** and rubric boxes unchecked → incomplete under Unit 6 / §5; cannot award full process points. |
-| **Σ** | **89**/100 | |
-
-**Policy note for docs PRs:** T and X are N/A→full when there is no UI/runtime surface. P stays strict (AI log) even for docs.
-
----
-
-## Still required before locking grades
-
-1. Human score of each PR against that task’s `ASSIGNMENT-*-taskN.md` (bot is first pass only).  
-2. AI Review Log present on every scored PR (§5 P dimension).  
-3. Equipo 3 CI actually green on the tip PRs.  
-4. One behavioral spot-check per seam (Oracle stream, PWA offline, accounts curl guard, graph aside).  
-5. §6 oral defense scored separately — not in this matrix.
+_Updated: 2026-10-15 pre-defense (formal-review + cross-team-commit tips waived; #9 merged)._
